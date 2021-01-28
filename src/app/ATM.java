@@ -1,5 +1,11 @@
 package app;
 
+/*
+this class represents the atm itself
+it authenticate the user's data using  bankDatabase(my fake database)
+it displays the atm main menu
+and it preform one of three transactions which is Withdraw , Deposit , Balance inquiring or Exit from the system
+ */
 public class ATM {
 
     private boolean userAuthenticated;
@@ -19,7 +25,7 @@ public class ATM {
 
     public ATM() {
         userAuthenticated = false;
-        currentAccountNumber = 0 ;
+        currentAccountNumber = 0;
         screen = new Screen();
         keypad = new Keypad();
         depositSlot = new DepositSlot();
@@ -40,15 +46,13 @@ public class ATM {
     }
 
 
-
-
     public void performTransaction() {
-        boolean exited = false ;
-        while (! exited){
-            int input  = displayMainMenu() ; // displaying main menu
-            switch (input){
+        boolean exited = false;
+        while (!exited) {
+            int input = displayMainMenu(); // displaying main menu
+            switch (input) {
                 case WITHDRAWAL:
-                    createTransaction(new Withdrawal(currentAccountNumber, screen,bankDatabase, keypad, cashDispenser));
+                    createTransaction(new Withdrawal(currentAccountNumber, screen, bankDatabase, keypad, cashDispenser));
                     break;
                 case DEPOSIT:
                     createTransaction(new Deposit(currentAccountNumber, screen, bankDatabase, depositSlot, keypad));
@@ -58,7 +62,7 @@ public class ATM {
                     break;
                 case EXIT:
                     screen.displayMessage("System Exiting ...");
-                    exited = true ;
+                    exited = true;
                     break;
                 default:
                     screen.displayMessage("wrong choice try again ");
@@ -80,7 +84,8 @@ public class ATM {
         screen.displayMessage("wrong account number or PIN ");
         return false;
     }
-    private void createTransaction(Transaction transaction){
+
+    private void createTransaction(Transaction transaction) {
         transaction.execute();
     }
 
@@ -92,9 +97,8 @@ public class ATM {
         screen.displayMessage("3- deposit funds");
         screen.displayMessage("4- Exit ");
 
-        return keypad.getInput() ;
+        return keypad.getInput();
     }
-
 
 
 }

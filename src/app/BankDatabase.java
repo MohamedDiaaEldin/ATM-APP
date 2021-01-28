@@ -1,44 +1,53 @@
 package app;
 
+/*
+this is a fake Database
+that contains two accounts
+this class is responsible of retrieving accounts data , authenticate users
+and updating accounts data through credit and debit money
+updating data is completely lay on Account Class that is do some updating data
+ */
 public class BankDatabase {
 
     private Account[] accounts;
 
 
     public BankDatabase() {
-        accounts = new Account[2] ;
-        accounts[0] = new Account(1234,2222, 1000 , 1200 ) ;
-        accounts[1] = new Account(1235,4444, 100, 200) ;
+        accounts = new Account[2];
+        accounts[0] = new Account(1234, 2222, 1000, 1200);
+        accounts[1] = new Account(1235, 4444, 100, 200);
     }
 
-    public boolean authenticateUser(int accountNumber, int PIN){
-        Account account = getAccount(accountNumber) ;
-        return account != null && account.validatePIN(PIN) ;
+    public boolean authenticateUser(int accountNumber, int PIN) {
+        Account account = getAccount(accountNumber);
+        return account != null && account.validatePIN(PIN);
     }
 
     /* there is more efficient ways to do this step but it's ok for current data
     /* ex if the account number is unique so hashMash will be good choice fo this function
      */
-    private Account getAccount(int accountNumber){
-        for (Account account : accounts){
-            if (account.getAccountNumber() == accountNumber){
+    private Account getAccount(int accountNumber) {
+        for (Account account : accounts) {
+            if (account.getAccountNumber() == accountNumber) {
                 return account;
             }
         }
-        return null ; // there is no account
+        return null; // there is no account
     }
 
-    public double getAvailableBalance(int accountNumber){
+    public double getAvailableBalance(int accountNumber) {
         return getAccount(accountNumber).getAvailableBalance();
     }
-    public double getTotalBalance(int accountNumber){
+
+    public double getTotalBalance(int accountNumber) {
         return getAccount(accountNumber).getTotalBalance();
     }
-    public void credit(int accountNumber, double amount){
+
+    public void credit(int accountNumber, double amount) {
         getAccount(accountNumber).credit(amount);
     }
 
-    public void debit(int accountNumber, double amount){
+    public void debit(int accountNumber, double amount) {
         getAccount(accountNumber).debit(amount);
     }
 

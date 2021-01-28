@@ -1,10 +1,16 @@
 package app;
+/*
+this class is represents a user account
+ this class is totally responsible for updating data
+ using credit and debit methods
+ and also is responsible for authenticating user's PIN
+ */
 
 public class Account {
-    private int accountNumber ;
+    private int accountNumber;
     private int PIN;
-    private double availableBalance ;
-    private double totalBalance ;
+    private double availableBalance;
+    private double totalBalance;
 
     public Account(int accountNumber, int PIN, double availableBalance, double totalBalance) {
         this.accountNumber = accountNumber;
@@ -17,17 +23,17 @@ public class Account {
         return accountNumber;
     }
 
-    public void credit(double amount ){
+    public void credit(double amount) {
         this.totalBalance += amount;
-   }
+    }
 
-   public void debit(double amount){
-        this.availableBalance -= amount ;
-        this.totalBalance -= amount ;
-   }
+    public void debit(double amount) {
+        this.availableBalance -= amount;
+        this.totalBalance -= amount;
+    }
 
     public boolean validatePIN(int PIN) {
-        return this.PIN == PIN ;
+        return this.PIN == PIN;
     }
 
     public double getAvailableBalance() {
@@ -39,20 +45,18 @@ public class Account {
     }
 
     private void setAvailableBalance(double availableBalance) {
-        if(availableBalance < 0){
-         throw new  IllegalArgumentException("there is no negative balance ") ;
-        }
-        else{
-            this.availableBalance = availableBalance ;
+        if (availableBalance < 0) {
+            throw new IllegalArgumentException("there is no negative balance ");
+        } else {
+            this.availableBalance = availableBalance;
         }
 
     }
 
     private void setTotalBalance(double totalBalance) {
-        if (totalBalance < 0){
-            throw new IllegalArgumentException("the is no negative balance ") ;
-        }
-        else{
+        if (totalBalance < 0) {
+            throw new IllegalArgumentException("the is no negative balance ");
+        } else {
             this.totalBalance = totalBalance;
         }
     }
