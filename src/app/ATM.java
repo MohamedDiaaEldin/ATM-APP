@@ -41,7 +41,7 @@ public class ATM {
             performTransaction(); // on the main menu
             userAuthenticated = false;
             currentAccountNumber = 0;
-            screen.displayMessage("good bye thanks for using our ATM");
+            screen.displayMessage("good bye thanks for using our ATM\n");
         }
     }
 
@@ -65,7 +65,7 @@ public class ATM {
                     exited = true;
                     break;
                 default:
-                    screen.displayMessage("wrong choice try again ");
+                    screen.displayWrongChoiceMessage();
             }
         }
 
@@ -89,14 +89,10 @@ public class ATM {
         transaction.execute();
     }
 
-
-    public int displayMainMenu() {
-        screen.displayMessage("Main menu: ");
-        screen.displayMessage("1- view my balance");
-        screen.displayMessage("2- withdraw cash");
-        screen.displayMessage("3- deposit funds");
-        screen.displayMessage("4- Exit ");
-
+    public int displayMainMenu(){
+        screen.displayMessage("Main menu");
+        screen.displayMessage(String.format("%s\n%s\n%s\n%s",
+                "1- view my balance ", "2- withdraw cash" , "3- deposit funds", "4- Exit"));
         return keypad.getInput();
     }
 

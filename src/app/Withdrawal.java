@@ -52,24 +52,22 @@ public class Withdrawal extends Transaction {
                     break;
                 case 6:
                     // breaking out of the loop and returning back to main menu
+                    getScreen().displayCancelingMessage();
                     done = true;
                     break;
                 default:
-                    getScreen().displayMessage("wrong choice try again");
+                    getScreen().displayWrongChoiceMessage();
                     break;
             }
         }
     }
 
 
-    // displaying withdrawal menu and take choice from the user
+    // displaying withdrawal menu and take choice from user
     private int displayMenu() {
-        getScreen().displayMessage("1-  20$");
-        getScreen().displayMessage("2-  40$");
-        getScreen().displayMessage("3-  60$");
-        getScreen().displayMessage("4-  100$");
-        getScreen().displayMessage("5-  200$");
-        getScreen().displayMessage("6-  cancel transaction");
+
+        getScreen().displayMessage(String.format("%s\n%s\n%s\n%s\n%s\n%s\n%s","Withdraw menu",
+                "1- 20$", "2- 40$", "3- 60$", "4- 100$", "5- 200$", "6- cancel transaction"));
         return keypad.getInput();
     }
 

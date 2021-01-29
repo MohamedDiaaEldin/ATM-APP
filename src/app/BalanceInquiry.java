@@ -12,10 +12,11 @@ public class BalanceInquiry extends Transaction {
 
     @Override
     public void execute() {
-        getScreen().displayMessage("Balance Inquiry");
-        int accountNumber = getAccountNumber();
-        getScreen().displayDollarMessage("Available balance: ", getBankDatabase().getAvailableBalance(accountNumber));
-        getScreen().displayDollarMessage("Total balance", getBankDatabase().getTotalBalance(accountNumber));
+        Screen screen = getScreen() ;
+        screen.displayMessage("Balance Inquiry\n");
+        screen.displayDollarMessage("Available balance: ", getBankDatabase().getAvailableBalance(getAccountNumber()));
+        screen.displayDollarMessage("Total balance", getBankDatabase().getTotalBalance(getAccountNumber()));
+        screen.displayMessage("");// next line
     }
 
 }
