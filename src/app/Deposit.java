@@ -25,7 +25,7 @@ public class Deposit extends Transaction {
         amount = takeAmount();
         if (amount != 0) {
             getScreen().displayMessage("insert envelope containing  " + amount + " $");
-            // it will always true for because no such service in current system
+            // it will always true for now because no such service in current system
             if (depositSlot.isEnvelopeReceived()) {
                 getBankDatabase().credit(getAccountNumber(), amount);
                 getScreen().displayMessage("we have received your money");
